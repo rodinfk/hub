@@ -93,7 +93,7 @@ async def authorization(message: Message, state: FSMContext):
 
     try:
         r = requests.get(
-            f"http://{url}/get_robot/{message.text}"
+            f"{url}/get_robot/{message.text}"
         )
 
         name = r.json()['name']
@@ -152,7 +152,7 @@ async def request_handler(message: Message, state: FSMContext):
     text = message.text
 
     url = config().get("SERVER_URL")
-    robot_id = int(sql.get_robot_by_user_id(user_id))
+    robot_id = sql.get_robot_by_user_id(user_id)
 
     keyboard = ReplyKeyboardMarkup(
         keyboard=report_btns,
@@ -163,7 +163,7 @@ async def request_handler(message: Message, state: FSMContext):
     if text == BTN_TEXT.TOTAL_BAGS:
         try:
             r = requests.get(
-                f"http://{url}/get_total_bags/{robot_id}"
+                f"{url}/get_total_bags/{robot_id}"
             )
         
             await bot.send_message(
@@ -183,7 +183,7 @@ async def request_handler(message: Message, state: FSMContext):
     elif text == BTN_TEXT.TODAY_PROFILES:
         try:
             r = requests.get(
-                f"http://{url}/get_today_profiles_data/{robot_id}"
+                f"{url}/get_today_profiles_data/{robot_id}"
             )
 
             data = r.json()
@@ -209,7 +209,7 @@ async def request_handler(message: Message, state: FSMContext):
     elif text == BTN_TEXT.TODAY_BAGS:
         try:
             r = requests.get(
-                f"http://{url}/get_today_bags/{robot_id}"
+                f"{url}/get_today_bags/{robot_id}"
             )
 
             await bot.send_message(
@@ -229,7 +229,7 @@ async def request_handler(message: Message, state: FSMContext):
     elif text == BTN_TEXT.CONDITION:
         try:
             r = requests.get(
-                f"http://{url}/get_last_data/{robot_id}"
+                f"{url}/get_last_data/{robot_id}"
             )
 
             data = r.json()
