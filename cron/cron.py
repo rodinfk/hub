@@ -5,7 +5,7 @@ from dotenv import dotenv_values
 
 
 def config():
-    return dotenv_values("config.env")
+    return dotenv_values(".env")
 
 
 DATA_SERVER_URL = config().get("DATA_SERVER_URL")
@@ -13,7 +13,7 @@ SERIAL_KEY = config().get("SERIAL_KEY")
 PROJECT_NAME = config().get("PROJECT_NAME")
 ROBOT_TYPE = config().get("ROBOT_TYPE")
 
-url = f"http://{DATA_SERVER_URL}/set_robot_data/{SERIAL_KEY}"
+url = f"{DATA_SERVER_URL}/set_robot_data/{SERIAL_KEY}"
 
 headers = {
     "Content-Type": "application/json"

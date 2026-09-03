@@ -120,7 +120,12 @@ async def authorization(message: Message, state: FSMContext):
                 f"Ваш проект не найден"
             )
 
-
+    except requests.exceptions.JSONDecodeError:
+        await bot.send_message(
+            user_id,
+            "Такого серийного номера в системе не нашлось. Попробуйте еще раз"
+            )
+        
     except requests.exceptions.ConnectionError:
         await bot.send_message(
             user_id,
@@ -233,7 +238,7 @@ async def request_handler(message: Message, state: FSMContext):
             )
 
             data = r.json()
-            errors = "НЕТ ОШИБОК" if not data['errors'] else errors
+            errors = "НЕТ ОШИБОК" if not data['errors'] else data['errors']
 
             await bot.send_message(
                 user_id,
