@@ -47,8 +47,8 @@ def daily_bags_every_profile(serial_key):
     last_bags = {}
 
     for data in today_data:
-        profile = data["name"]
-        bags = data["bags"]
+        profile = data.profile_loaded
+        bags = data.bags
 
         if profile == "ПРОФИЛЬ НЕ ГОТОВ":
             continue
