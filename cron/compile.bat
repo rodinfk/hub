@@ -1,0 +1,1 @@
+pyinstaller --onefile --hidden-import=requests .\cron.py
